@@ -1,0 +1,163 @@
+2026-05-06 06:18:57,188 - INFO - 
+Verifying processed files...
+2026-05-06 06:18:57,189 - INFO - Created backup of processed PDFs: processed_pdfs.txt.backup
+2026-05-06 06:18:57,231 - WARNING - Found 1 corrupted records. Fixing...
+2026-05-06 06:18:57,232 - INFO - Removed 1 corrupted records
+2026-05-06 06:18:57,233 - INFO - 🔍 Total Jobs Found In Sample.md: 1
+2026-05-06 06:18:57,233 - INFO - Created folder: HTML-Content
+2026-05-06 06:18:57,233 - INFO - 
+============================================================
+2026-05-06 06:18:57,233 - INFO - Job #4: RBI - Officers Grade B
+2026-05-06 06:18:57,233 - INFO - ============================================================
+2026-05-06 06:18:57,233 - INFO - PDF Processed: ❌
+2026-05-06 06:18:57,234 - INFO - Summary Generated: ✅
+2026-05-06 06:18:57,234 - INFO - Need to download & process...
+2026-05-06 06:18:57,234 - INFO - Downloading: https://opportunities.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4997 (depth=0)
+2026-05-06 06:18:57,234 - INFO - Attempt 1/5 for https://opportunities.rbi.org.in/scripts/bs_viewcontent.aspx?Id=4997
+2026-05-06 06:18:57,742 - WARNING - HTML detected (not PDF). Will parse HTML content.
+2026-05-06 06:18:57,745 - INFO - 🔁 Found embedded PDF link: https://rbidocs.rbi.org.in/rdocs/Content/PDFs/DEPR29042026BE94DEA85E3C4753A82B191EB6A795ED.PDF
+2026-05-06 06:18:57,745 - INFO - Downloading: https://rbidocs.rbi.org.in/rdocs/Content/PDFs/DEPR29042026BE94DEA85E3C4753A82B191EB6A795ED.PDF (depth=1)
+2026-05-06 06:18:57,746 - INFO - Attempt 1/5 for https://rbidocs.rbi.org.in/rdocs/Content/PDFs/DEPR29042026BE94DEA85E3C4753A82B191EB6A795ED.PDF
+2026-05-06 06:18:58,389 - INFO - ✓ Downloaded valid PDF. Size: 772826 bytes
+2026-05-06 06:18:58,391 - INFO - Processing as PDF with OCR...
+2026-05-06 06:18:58,807 - INFO - OCR Page 1/59
+2026-05-06 06:19:01,463 - INFO - OCR Page 2/59
+2026-05-06 06:19:04,085 - INFO - OCR Page 3/59
+2026-05-06 06:19:06,257 - INFO - OCR Page 4/59
+2026-05-06 06:19:08,727 - INFO - OCR Page 5/59
+2026-05-06 06:19:10,592 - INFO - OCR Page 6/59
+2026-05-06 06:19:12,474 - INFO - OCR Page 7/59
+2026-05-06 06:19:14,612 - INFO - OCR Page 8/59
+2026-05-06 06:19:16,770 - INFO - OCR Page 9/59
+2026-05-06 06:19:18,946 - INFO - OCR Page 10/59
+2026-05-06 06:19:21,099 - INFO - OCR Page 11/59
+2026-05-06 06:19:23,239 - INFO - OCR Page 12/59
+2026-05-06 06:19:25,381 - INFO - OCR Page 13/59
+2026-05-06 06:19:27,590 - INFO - OCR Page 14/59
+2026-05-06 06:19:29,427 - INFO - OCR Page 15/59
+2026-05-06 06:19:31,880 - INFO - OCR Page 16/59
+2026-05-06 06:19:33,738 - INFO - OCR Page 17/59
+2026-05-06 06:19:35,915 - INFO - OCR Page 18/59
+2026-05-06 06:19:38,070 - INFO - OCR Page 19/59
+2026-05-06 06:19:40,207 - INFO - OCR Page 20/59
+2026-05-06 06:19:42,365 - INFO - OCR Page 21/59
+2026-05-06 06:19:44,541 - INFO - OCR Page 22/59
+2026-05-06 06:19:46,692 - INFO - OCR Page 23/59
+2026-05-06 06:19:49,150 - INFO - OCR Page 24/59
+2026-05-06 06:19:51,615 - INFO - OCR Page 25/59
+2026-05-06 06:19:53,901 - INFO - OCR Page 26/59
+2026-05-06 06:19:56,068 - INFO - OCR Page 27/59
+2026-05-06 06:19:58,224 - INFO - OCR Page 28/59
+2026-05-06 06:20:00,370 - INFO - OCR Page 29/59
+2026-05-06 06:20:02,592 - INFO - OCR Page 30/59
+2026-05-06 06:20:05,068 - INFO - OCR Page 31/59
+2026-05-06 06:20:07,209 - INFO - OCR Page 32/59
+2026-05-06 06:20:09,367 - INFO - OCR Page 33/59
+2026-05-06 06:20:11,226 - INFO - OCR Page 34/59
+2026-05-06 06:20:13,387 - INFO - OCR Page 35/59
+2026-05-06 06:20:15,536 - INFO - OCR Page 36/59
+2026-05-06 06:20:17,692 - INFO - OCR Page 37/59
+2026-05-06 06:20:19,868 - INFO - OCR Page 38/59
+2026-05-06 06:20:21,708 - INFO - OCR Page 39/59
+2026-05-06 06:20:23,535 - INFO - OCR Page 40/59
+2026-05-06 06:20:25,694 - INFO - OCR Page 41/59
+2026-05-06 06:20:27,555 - INFO - OCR Page 42/59
+2026-05-06 06:20:29,709 - INFO - OCR Page 43/59
+2026-05-06 06:20:31,865 - INFO - OCR Page 44/59
+2026-05-06 06:20:34,020 - INFO - OCR Page 45/59
+2026-05-06 06:20:36,196 - INFO - OCR Page 46/59
+2026-05-06 06:20:38,349 - INFO - OCR Page 47/59
+2026-05-06 06:20:40,489 - INFO - OCR Page 48/59
+2026-05-06 06:20:42,223 - INFO - OCR Page 49/59
+2026-05-06 06:20:44,405 - INFO - OCR Page 50/59
+2026-05-06 06:20:46,552 - INFO - OCR Page 51/59
+2026-05-06 06:20:48,709 - INFO - OCR Page 52/59
+2026-05-06 06:20:50,551 - INFO - OCR Page 53/59
+2026-05-06 06:20:52,728 - INFO - OCR Page 54/59
+2026-05-06 06:20:54,566 - INFO - OCR Page 55/59
+2026-05-06 06:20:55,959 - INFO - OCR Page 56/59
+2026-05-06 06:20:57,698 - INFO - OCR Page 57/59
+2026-05-06 06:20:59,412 - INFO - OCR Page 58/59
+2026-05-06 06:21:01,589 - INFO - OCR Page 59/59
+2026-05-06 06:21:04,053 - INFO - Saved OCR: 4_RBI - Officers Grade B_1778048464-PDF.txt
+2026-05-06 06:21:04,053 - INFO - ✅ Summary already exists
+2026-05-06 06:23:54,730 - INFO - 
+Verifying processed files...
+2026-05-06 06:23:54,730 - INFO - Created backup of processed PDFs: processed_pdfs.txt.backup
+2026-05-06 06:23:54,732 - INFO - 🔍 Total Jobs Found In Sample.md: 1
+2026-05-06 06:23:54,732 - INFO - 
+============================================================
+2026-05-06 06:23:54,733 - INFO - Job #4: RBI - Officers Grade B
+2026-05-06 06:23:54,733 - INFO - ============================================================
+2026-05-06 06:23:54,733 - INFO - PDF Processed: ✅
+2026-05-06 06:23:54,733 - INFO - Summary Generated: ❌
+2026-05-06 06:23:54,733 - INFO - ✅ Found OCR file: 4_RBI - Officers Grade B_1778048464-PDF.txt
+2026-05-06 06:23:54,733 - INFO - ✅ Using existing file: 4_RBI - Officers Grade B_1778048464-PDF.txt
+2026-05-06 06:23:54,733 - INFO - Need to generate summary...
+2026-05-06 06:23:54,733 - INFO - 
+Generating summary for Job #4: RBI - Officers Grade B
+2026-05-06 06:23:54,746 - INFO - Text cleaned: 192202 → 153509 chars (20.1% reduction)
+2026-05-06 06:23:54,746 - INFO - Processing 20 chunks...
+2026-05-06 06:23:54,746 - INFO - Gemini chunk 1/20
+2026-05-06 06:23:54,791 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:23:59,289 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:24:01,291 - INFO - Gemini chunk 2/20
+2026-05-06 06:24:01,386 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:24:06,037 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:24:08,039 - INFO - Gemini chunk 3/20
+2026-05-06 06:24:08,083 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:24:13,251 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:24:15,253 - INFO - Gemini chunk 4/20
+2026-05-06 06:24:15,297 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:24:20,954 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:24:22,956 - INFO - Gemini chunk 5/20
+2026-05-06 06:24:23,003 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:24:26,819 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:24:28,821 - INFO - Gemini chunk 6/20
+2026-05-06 06:24:28,865 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:24:32,964 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:24:34,966 - INFO - Gemini chunk 7/20
+2026-05-06 06:24:35,010 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:24:38,818 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:24:40,821 - INFO - Gemini chunk 8/20
+2026-05-06 06:24:40,872 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:24:45,461 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:24:47,462 - INFO - Gemini chunk 9/20
+2026-05-06 06:24:47,507 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:24:51,176 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:24:53,178 - INFO - Gemini chunk 10/20
+2026-05-06 06:24:53,225 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:24:57,567 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:24:59,568 - INFO - Gemini chunk 11/20
+2026-05-06 06:24:59,612 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:25:02,288 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:25:04,291 - INFO - Gemini chunk 12/20
+2026-05-06 06:25:04,381 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:25:09,360 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:25:11,361 - INFO - Gemini chunk 13/20
+2026-05-06 06:25:11,414 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:25:16,022 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:25:18,024 - INFO - Gemini chunk 14/20
+2026-05-06 06:25:18,068 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:25:22,978 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:25:24,980 - INFO - Gemini chunk 15/20
+2026-05-06 06:25:25,025 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:25:30,016 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:25:32,017 - INFO - Gemini chunk 16/20
+2026-05-06 06:25:32,062 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:25:34,203 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:25:36,204 - INFO - Gemini chunk 17/20
+2026-05-06 06:25:36,253 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:25:40,813 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:25:42,815 - INFO - Gemini chunk 18/20
+2026-05-06 06:25:42,859 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:25:46,675 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:25:48,677 - INFO - Gemini chunk 19/20
+2026-05-06 06:25:48,721 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:25:52,030 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:25:54,031 - INFO - Gemini chunk 20/20
+2026-05-06 06:25:54,076 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:25:56,383 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:25:58,453 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 06:26:07,838 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2026-05-06 06:26:09,840 - INFO - Summary saved: 4_RBI - Officers Grade B_1778048769-SUMMARY.md

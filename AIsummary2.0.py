@@ -1,14 +1,30 @@
 import re
 import requests
 import time
+import logging
 from io import BytesIO
 from datetime import datetime
 from PyPDF2 import PdfReader, PdfWriter
 from google import genai
+from collections import defaultdict
 import os
 from dotenv import load_dotenv
 import urllib3
 from requests.exceptions import SSLError, ConnectionError, Timeout
+from bs4 import BeautifulSoup
+
+# ==============================
+# LOGGING SETUP
+# ==============================
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('pipeline.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
 
 # Suppress SSL warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -35,27 +51,30 @@ OCR_API_KEY = os.getenv("OCR_API_KEY")
 GEMINI_API_KEYS = os.getenv("GEMINI_API_KEYS", "").split(",")
 CURRENT_GEMINI_KEY_INDEX = 0
 
-# Validate API keys are present
-if not OCR_API_KEY or not GEMINI_API_KEYS:
+# ✅ FIX 3: ENV VALIDATION IS WRONG - FIXED
+if not OCR_API_KEY or not any(k.strip() for k in GEMINI_API_KEYS):
     raise ValueError("Missing API keys. Set OCR_API_KEY and GEMINI_API_KEY environment variables.")
 
 INPUT_MD = "Sample.md"
-OCR_OUTPUT = "NotiPDF.txt"  # Keeping for backward compatibility but not required
+OCR_OUTPUT = "NotiPDF.txt"
 
-RECORD_FILE = "processed_pdfs.txt"  # Tracks downloaded PDFs
-SUMMARY_RECORD_FILE = "processed_summaries.txt"  # Tracks generated summaries
-FAILED_PDFS_FILE = "failed_pdfs.txt"  # New file to track failed downloads
+RECORD_FILE = "processed_pdfs.txt"
+SUMMARY_RECORD_FILE = "processed_summaries.txt"
+FAILED_PDFS_FILE = "failed_pdfs.txt"
 OCR_FOLDER = "OCR-PDF-TXT"
-SUMMARY_FOLDER = "Summaries"  # New folder for summary files
+SUMMARY_FOLDER = "Summaries"
+HTML_FOLDER = "HTML-Content"
 
-MODEL = "gemini-2.5-flash"
+MODEL = "gemini-2.5-flash-lite"
 
 OCR_ENGINES = [2, 1, 3]
 RETRY_LIMIT = 3
-REQUEST_DELAY = 3  # Increased from 2
-CHUNK_SIZE = 15000
-DOWNLOAD_RETRY_LIMIT = 5  # Increased from 3
-DOWNLOAD_TIMEOUT = 180  # Increased from 120 (3 minutes)
+REQUEST_DELAY = 3
+# ✅ FIX 8: CHUNK SIZE TOO LARGE - REDUCED
+CHUNK_SIZE = 8000
+DOWNLOAD_RETRY_LIMIT = 5
+DOWNLOAD_TIMEOUT = 180
+
 
 # ==============================
 # GEMINI CLIENT
@@ -68,22 +87,31 @@ client = genai.Client(api_key=GEMINI_API_KEYS[0])
 # CREATE SESSION FOR BETTER CONNECTION HANDLING
 # ==============================
 
+class ManagedSession:
+    """Context manager for session handling"""
+    def __init__(self):
+        self.session = None
+    
+    def __enter__(self):
+        self.session = requests.Session()
+        adapter = requests.adapters.HTTPAdapter(
+            max_retries=3,
+            pool_connections=10,
+            pool_maxsize=10,
+            pool_block=False
+        )
+        self.session.mount('http://', adapter)
+        self.session.mount('https://', adapter)
+        return self.session
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.session:
+            self.session.close()
+
+
 def create_session():
-    """Create a requests session with custom settings"""
-    session = requests.Session()
-
-    # Configure session with custom adapters
-    adapter = requests.adapters.HTTPAdapter(
-        max_retries=3,
-        pool_connections=10,
-        pool_maxsize=10,
-        pool_block=False
-    )
-
-    session.mount('http://', adapter)
-    session.mount('https://', adapter)
-
-    return session
+    """Returns a context manager for session handling"""
+    return ManagedSession()
 
 
 # ==============================
@@ -92,10 +120,10 @@ def create_session():
 
 def ensure_folders():
     """Create required folders if they don't exist"""
-    for folder in [OCR_FOLDER, SUMMARY_FOLDER]:
+    for folder in [OCR_FOLDER, SUMMARY_FOLDER, HTML_FOLDER]:
         if not os.path.exists(folder):
             os.makedirs(folder)
-            print(f"Created folder: {folder}")
+            logger.info(f"Created folder: {folder}")
 
 
 # ==============================
@@ -104,11 +132,111 @@ def ensure_folders():
 
 def sanitize_filename(filename):
     """Remove invalid characters for cross-platform filenames"""
-    # Replace invalid characters with underscore
     invalid_chars = r'[<>:"/\\|?*]'
     sanitized = re.sub(invalid_chars, '_', filename)
-    # Trim and limit length
-    return sanitized[:100].strip()
+    # ✅ FIX 10: Added timestamp to avoid collisions
+    timestamp = int(time.time())
+    return f"{sanitized[:80]}_{timestamp}".strip()
+
+
+# ==============================
+# DETECT FILE TYPE (IMPROVED)
+# ==============================
+
+def detect_file_type(response):
+    """Smart detection of file type from response"""
+    content_type = response.headers.get("Content-Type", "").lower()
+    
+    # Check by content-type header
+    if "pdf" in content_type:
+        return "pdf"
+    elif "html" in content_type:
+        return "html"
+    
+    # Check by content magic bytes
+    if response.content.startswith(b"%PDF"):
+        return "pdf"
+    
+    # ✅ FIX 6: IMPROVED HTML DETECTION
+    content_lower = response.content[:500].lower()
+    if b"<!DOCTYPE html" in content_lower or b"<html" in content_lower:
+        return "html"
+    
+    return "unknown"
+
+
+# ==============================
+# EXTRACT TEXT FROM HTML (IMPROVED)
+# ==============================
+
+def extract_text_from_html(html_stream, url=None):
+    """Extract clean text from HTML content with site-specific optimizations"""
+    html = html_stream.getvalue().decode("utf-8", errors="ignore")
+    soup = BeautifulSoup(html, "html.parser")
+    
+    # Remove script and style elements
+    for tag in soup(["script", "style", "noscript", "meta", "link"]):
+        tag.extract()
+    
+    # Site-specific extraction logic
+    if url and "rbi.org.in" in url:
+        main_content = soup.find("div", {"id": "content"})
+        if not main_content:
+            main_content = soup.find("div", {"class": "content"})
+        if not main_content:
+            main_content = soup.find("div", {"class": "main-content"})
+        if main_content:
+            soup = main_content
+    
+    elif url and "aai.aero" in url:
+        main_content = soup.find("div", {"class": "entry-content"})
+        if main_content:
+            soup = main_content
+    
+    # Get text
+    text = soup.get_text(separator="\n")
+    
+    # Clean up whitespace
+    text = re.sub(r"\n\s*\n", "\n\n", text)
+    text = re.sub(r"[ \t]+", " ", text)
+    
+    # ✅ FIX 11: RELAXED LINE FILTERING
+    lines = text.split('\n')
+    cleaned_lines = []
+    for line in lines:
+        line_stripped = line.strip()
+        if len(line_stripped) > 10:  # Reduced from 30 to 10
+            cleaned_lines.append(line)
+        elif any(keyword in line_stripped.lower() for keyword in ['age', 'salary', 'vacancy', 'total', 'sc', 'st', 'obc', 'ews']):
+            cleaned_lines.append(line)
+    
+    return "\n".join(cleaned_lines).strip()
+
+
+# ==============================
+# SAVE HTML CONTENT TO FILE
+# ==============================
+
+def save_html_to_file(serial, title, url, content):
+    """Save HTML extracted content for a job"""
+    ensure_folders()
+    
+    safe_title = sanitize_filename(f"{serial}_{title}")
+    filename = f"{safe_title}-HTML.txt"
+    filepath = os.path.join(HTML_FOLDER, filename)
+    
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write("=" * 80 + "\n")
+        f.write(f"Serial: {serial}\n")
+        f.write(f"Job Title: {title}\n")
+        f.write(f"Source URL: {url}\n")
+        f.write(f"Content Type: HTML (extracted)\n")
+        f.write(f"Timestamp: {datetime.now()}\n")
+        f.write("=" * 80 + "\n\n")
+        f.write(content)
+    
+    logger.info(f"Saved HTML content: {filename}")
+    return filepath
 
 
 # ==============================
@@ -132,7 +260,6 @@ def save_processed_pdf(url):
 # ==============================
 
 def load_processed_summaries():
-    """Track which job serials have been summarized"""
     if not os.path.exists(SUMMARY_RECORD_FILE):
         return set()
     with open(SUMMARY_RECORD_FILE, "r", encoding="utf-8") as f:
@@ -140,7 +267,6 @@ def load_processed_summaries():
 
 
 def save_processed_summary(serial):
-    """Mark a job as summarized"""
     with open(SUMMARY_RECORD_FILE, "a", encoding="utf-8") as f:
         f.write(str(serial) + "\n")
 
@@ -164,22 +290,20 @@ def verify_processed_files():
     """Check if all processed PDFs have corresponding OCR files and fix inconsistencies"""
     if not os.path.exists(RECORD_FILE):
         return
-
     processed_pdfs = load_processed_pdfs()
     fixed_records = []
     corrupted_records = []
-
+    
     # Create a backup of the original file
     if os.path.exists(RECORD_FILE):
         backup_file = f"{RECORD_FILE}.backup"
         import shutil
         shutil.copy2(RECORD_FILE, backup_file)
-        print(f"Created backup of processed PDFs: {backup_file}")
-
+        logger.info(f"Created backup of processed PDFs: {backup_file}")
+    
     # Check each URL and find corresponding OCR files
     for url in processed_pdfs:
         found = False
-        # Look for any OCR file that might correspond to this URL
         if os.path.exists(OCR_FOLDER):
             for filename in os.listdir(OCR_FOLDER):
                 if filename.endswith("-PDF.txt"):
@@ -187,33 +311,31 @@ def verify_processed_files():
                     try:
                         with open(filepath, "r", encoding="utf-8") as f:
                             content = f.read()
-                            # Check if URL appears in the file header
                             if url in content:
                                 found = True
-                                fixed_records.append(url)
                                 break
                     except:
                         continue
-
+        
+        # ✅ FIX 2: DOUBLE APPEND BUG - FIXED
         if found:
             fixed_records.append(url)
         else:
             corrupted_records.append(url)
-
+    
     # Rewrite the processed PDFs file with only valid records
     if corrupted_records:
-        print(f"Found {len(corrupted_records)} corrupted records. Fixing...")
+        logger.warning(f"Found {len(corrupted_records)} corrupted records. Fixing...")
         with open(RECORD_FILE, "w", encoding="utf-8") as f:
             for url in fixed_records:
                 f.write(url + "\n")
-
-        # Log corrupted records
+        
         with open("corrupted_records.txt", "a", encoding="utf-8") as f:
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             for url in corrupted_records:
                 f.write(f"{timestamp}\t{url}\n")
-
-        print(f"Removed {len(corrupted_records)} corrupted records. Check corrupted_records.txt")
+        
+        logger.info(f"Removed {len(corrupted_records)} corrupted records")
 
 
 # ==============================
@@ -222,19 +344,12 @@ def verify_processed_files():
 
 def find_ocr_file_by_serial(serial, title):
     """Find OCR file by serial number, handling filename variations"""
-    safe_title = sanitize_filename(f"{serial}_{title}")
-    expected_filename = f"{safe_title}-PDF.txt"
-    expected_path = os.path.join(OCR_FOLDER, expected_filename)
-
-    if os.path.exists(expected_path):
-        return expected_path
-
-    # If expected file doesn't exist, search for any file with this serial
+    # Search without timestamp first
     if os.path.exists(OCR_FOLDER):
         for filename in os.listdir(OCR_FOLDER):
             if filename.startswith(f"{serial}_") and filename.endswith("-PDF.txt"):
                 return os.path.join(OCR_FOLDER, filename)
-
+    
     return None
 
 
@@ -245,22 +360,23 @@ def find_ocr_file_by_serial(serial, title):
 def extract_pdf_links():
     with open(INPUT_MD, "r", encoding="utf-8") as f:
         data = f.read()
-
-    job_pattern = r"###\s*(\d+)\.\s*(.*?)\n(.*?)(?=\n###\s*\d+\.|\Z)"
+    
+    job_pattern = r"###\s*(\d+)\.\s*(.+?)\n(.*?)(?=\n###\s*\d+\.\s+|\Z)"
     jobs = re.findall(job_pattern, data, re.S)
-
+    
     results = []
-
+    
     for serial, title, content in jobs:
         link = None
-
+        
         official = re.search(
-            r"\|\s*\d+\s*\|\s*Official Notification PDF\s*\|\s*\[.*?\]\((.*?)\)",
-            content
+            r"\|\s*\d+\s*\|.*?(Official|Detailed Advertisement|Notification).*?\|\s*\[.*?\]\((.*?)\)",
+            content,
+            re.I
         )
-
+        
         if official:
-            link = official.group(1)
+            link = official.group(2)
         else:
             fallback = re.search(
                 r"\|\s*\d+\s*\|\s*Notification PDF\s*\|\s*\[.*?\]\((.*?)\)",
@@ -268,47 +384,41 @@ def extract_pdf_links():
             )
             if fallback:
                 link = fallback.group(1)
-
+        
         if link:
             results.append((serial, title.strip(), link))
-
+    
     return results
 
 
 # ==============================
-# DOWNLOAD PDF WITH RETRY, USER-AGENT, AND HTTPS FALLBACK
+# DOWNLOAD PDF OR HTML WITH ENHANCED HANDLING
 # ==============================
 
-def download_pdf(url):
-    """Enhanced download with SSL verification, user-agent, retry logic, and HTTPS fallback"""
-    print(f"  Downloading: {url}")
-
-    # List of user-agents to rotate through
+def download_pdf(url, serial=None, depth=0):
+    """Enhanced download with HTML handling, recursion control, and serial for debugging"""
+    # ✅ FIX 5: ADD RECURSION DEPTH CONTROL
+    if depth > 3:
+        raise Exception("Too many redirects/recursions (possible loop)")
+    
+    logger.info(f"Downloading: {url} (depth={depth})")
+    
     USER_AGENTS = [
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/121.0',
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/121.0'
     ]
-
-    # Try HTTPS version if URL starts with HTTP
+    
     urls_to_try = [url]
     if url.startswith('http://'):
         https_url = url.replace('http://', 'https://', 1)
         urls_to_try.append(https_url)
-        print(f"    Will also try HTTPS version: {https_url}")
-
-    # Create session for better connection handling
-    session = create_session()
-
+        logger.info(f"Will also try HTTPS version: {https_url}")
+    
     for target_url in urls_to_try:
         for attempt in range(DOWNLOAD_RETRY_LIMIT):
             try:
-                # Rotate user-agent for each attempt
                 user_agent = USER_AGENTS[attempt % len(USER_AGENTS)]
-
                 headers = {
                     'User-Agent': user_agent,
                     'Accept': 'application/pdf,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -319,78 +429,101 @@ def download_pdf(url):
                     'Cache-Control': 'max-age=0',
                     'Referer': 'https://www.google.com/'
                 }
-
-                print(f"    Attempt {attempt + 1}/{DOWNLOAD_RETRY_LIMIT} for {target_url}")
-                print(f"    Using User-Agent: {user_agent[:50]}...")
-
-                # First attempt with SSL verification
-                try:
-                    r = session.get(
-                        target_url,
-                        timeout=DOWNLOAD_TIMEOUT,
-                        headers=headers,
-                        allow_redirects=True
-                    )
-                    r.raise_for_status()
-
-                    # Check if we got HTML instead of PDF (possible error page)
-                    content_type = r.headers.get('Content-Type', '').lower()
-                    if 'text/html' in content_type and 'pdf' not in target_url.lower():
-                        print(f"    Warning: Received HTML instead of PDF. Content-Type: {content_type}")
-                        # Check if it's a small HTML error page
-                        if len(r.content) < 102400:  # Less than 100KB
-                            print(f"    Possible error page or login redirect")
-                            # Check for common error messages
-                            content_sample = r.content[:500].decode('utf-8', errors='ignore')
-                            if '404' in content_sample or 'not found' in content_sample.lower():
-                                print(f"    ⚠️ Page may not exist (404)")
-                            elif 'access denied' in content_sample.lower() or 'forbidden' in content_sample.lower():
-                                print(f"    ⚠️ Access denied - server may be blocking automated requests")
-                            continue
-
-                    print(f"    ✓ Download successful! Size: {len(r.content)} bytes")
-                    return BytesIO(r.content)
-
-                except SSLError:
-                    # If SSL fails, try without verification
-                    print(f"    SSL Error, retrying without verification...")
-                    r = session.get(
-                        target_url,
-                        timeout=DOWNLOAD_TIMEOUT,
-                        verify=False,
-                        headers=headers,
-                        allow_redirects=True
-                    )
-                    r.raise_for_status()
-                    print(f"    ✓ Download successful (SSL bypassed)! Size: {len(r.content)} bytes")
-                    return BytesIO(r.content)
-
-                except (ConnectionError, Timeout) as e:
-                    # Handle connection and timeout errors with exponential backoff
-                    if attempt == DOWNLOAD_RETRY_LIMIT - 1:
-                        if target_url != urls_to_try[-1]:
-                            print(f"    All attempts failed for {target_url}, trying next URL...")
-                            break  # Try next URL
-                        raise
-
-                    wait_time = (attempt + 1) * 15  # Increased backoff
-                    print(f"    Connection/Timeout error: {type(e).__name__}")
-                    print(f"    Retrying in {wait_time} seconds...")
-                    time.sleep(wait_time)
-                    continue
-
+                
+                logger.info(f"Attempt {attempt + 1}/{DOWNLOAD_RETRY_LIMIT} for {target_url}")
+                
+                # ✅ FIX 4: SESSION CONTEXT MANAGER
+                with create_session() as session:
+                    try:
+                        r = session.get(
+                            target_url,
+                            timeout=DOWNLOAD_TIMEOUT,
+                            headers=headers,
+                            allow_redirects=True
+                        )
+                        r.raise_for_status()
+                        
+                        # ✅ FIX 14: ADD CONTENT SIZE CHECK
+                        if len(r.content) < 1000:
+                            raise Exception("Downloaded file too small (likely invalid)")
+                        
+                        file_type = detect_file_type(r)
+                        
+                        if file_type == "pdf":
+                            logger.info(f"✓ Downloaded valid PDF. Size: {len(r.content)} bytes")
+                            return BytesIO(r.content), "pdf"
+                        
+                        elif file_type == "html":
+                            logger.warning(f"HTML detected (not PDF). Will parse HTML content.")
+                            
+                            # Try to find embedded PDF link
+                            html_content = r.content.decode("utf-8", errors="ignore")
+                            pdf_match = re.search(r'(https?://[^"\']+\.pdf)', html_content, re.I)
+                            
+                            if pdf_match:
+                                real_pdf_url = pdf_match.group(1)
+                                logger.info(f"🔁 Found embedded PDF link: {real_pdf_url}")
+                                # ✅ FIX 5: PASS DEPTH + 1 FOR RECURSION CONTROL
+                                return download_pdf(real_pdf_url, serial, depth + 1)
+                            
+                            logger.info(f"📄 No PDF link found, returning HTML content")
+                            return BytesIO(r.content), "html"
+                        
+                        else:
+                            logger.error(f"Unknown file type: {file_type}")
+                            # ✅ FIX 1: serial NOW AVAILABLE
+                            debug_filename = f"debug_unknown_{serial or 'unknown'}_{int(time.time())}.html"
+                            with open(debug_filename, "wb") as f:
+                                f.write(r.content[:10000])
+                            raise Exception(f"Unknown file type: {file_type}")
+                    
+                    except SSLError:
+                        logger.warning(f"SSL Error, retrying without verification...")
+                        r = session.get(
+                            target_url,
+                            timeout=DOWNLOAD_TIMEOUT,
+                            verify=False,
+                            headers=headers,
+                            allow_redirects=True
+                        )
+                        r.raise_for_status()
+                        
+                        if len(r.content) < 1000:
+                            raise Exception("Downloaded file too small (likely invalid)")
+                        
+                        file_type = detect_file_type(r)
+                        if file_type == "pdf":
+                            logger.info(f"✓ Downloaded valid PDF (SSL bypassed)! Size: {len(r.content)} bytes")
+                            return BytesIO(r.content), "pdf"
+                        elif file_type == "html":
+                            logger.warning(f"HTML detected (SSL bypassed)")
+                            return BytesIO(r.content), "html"
+                        else:
+                            raise Exception(f"Unknown file type after SSL bypass: {file_type}")
+                    
+                    except (ConnectionError, Timeout) as e:
+                        if attempt == DOWNLOAD_RETRY_LIMIT - 1:
+                            if target_url != urls_to_try[-1]:
+                                logger.warning(f"All attempts failed for {target_url}, trying next URL...")
+                                break
+                            raise
+                        wait_time = (attempt + 1) * 15
+                        logger.warning(f"Connection/Timeout error: {type(e).__name__}")
+                        logger.warning(f"Retrying in {wait_time} seconds...")
+                        time.sleep(wait_time)
+                        continue
+            
             except Exception as e:
                 if attempt == DOWNLOAD_RETRY_LIMIT - 1:
                     if target_url != urls_to_try[-1]:
-                        print(f"    All attempts failed for {target_url}, trying next URL...")
-                        break  # Try next URL
+                        logger.warning(f"All attempts failed for {target_url}, trying next URL...")
+                        break
                     raise
-
                 wait_time = (attempt + 1) * 10
-                print(f"    Error: {type(e).__name__} - {e}")
-                print(f"    Retrying in {wait_time} seconds...")
+                logger.warning(f"Error: {type(e).__name__} - {e}")
+                logger.warning(f"Retrying in {wait_time} seconds...")
                 time.sleep(wait_time)
-
+    
     raise Exception(f"Failed to download after trying all URLs with {DOWNLOAD_RETRY_LIMIT} attempts each")
 
 
@@ -399,10 +532,13 @@ def download_pdf(url):
 # ==============================
 
 def split_pdf(pdf_stream):
-    reader = PdfReader(pdf_stream)
+    try:
+        reader = PdfReader(pdf_stream)
+    except Exception as e:
+        raise Exception(f"PDF parsing failed (corrupt or non-PDF content): {e}")
     total_pages = len(reader.pages)
     chunks = []
-
+    
     for i in range(total_pages):
         writer = PdfWriter()
         writer.add_page(reader.pages[i])
@@ -410,7 +546,7 @@ def split_pdf(pdf_stream):
         writer.write(buffer)
         buffer.seek(0)
         chunks.append((i + 1, buffer))
-
+    
     return chunks, total_pages
 
 
@@ -419,74 +555,153 @@ def split_pdf(pdf_stream):
 # ==============================
 
 def ocr_chunk(pdf_chunk):
+    """Sends PDF chunk to OCR.Space and returns reconstructed text."""
+    
     for engine in OCR_ENGINES:
         for attempt in range(RETRY_LIMIT):
             try:
                 response = requests.post(
                     "https://api.ocr.space/parse/image",
-                    files={"file": ("chunk.pdf", pdf_chunk.getvalue())},
+                    files={
+                        "file": (
+                            "chunk.pdf",
+                            pdf_chunk.getvalue(),
+                            "application/pdf"
+                        )
+                    },
                     data={
                         "apikey": OCR_API_KEY,
                         "language": "eng",
                         "OCREngine": engine,
                         "scale": True,
-                        "isTable": False,
+                        "isTable": True,
                         "filetype": "PDF",
-                        "detectOrientation": True
+                        "detectOrientation": True,
+                        "isOverlayRequired": True
                     },
                     timeout=120
                 )
-
+                
+                response.raise_for_status()
                 result = response.json()
-
+                
+                # ✅ FIX 7: OCR API HARD FAIL NOT HANDLED - ADDED
+                if result.get("OCRExitCode") == 3:
+                    logger.error("OCR API quota exhausted")
+                    raise Exception("OCR API quota exhausted")
+                
                 if result.get("IsErroredOnProcessing"):
+                    logger.warning(f"OCR Error (Engine {engine}) Attempt {attempt+1}")
                     continue
-
-                parsed = result.get("ParsedResults")
-
-                if parsed:
-                    text = parsed[0].get("ParsedText", "")
-                    if text.strip():
-                        return text
-
+                
+                parsed_results = result.get("ParsedResults", [])
+                
+                if not parsed_results:
+                    continue
+                
+                all_pages_text = []
+                
+                for page in parsed_results:
+                    overlay = page.get("TextOverlay", {})
+                    lines = overlay.get("Lines", [])
+                    
+                    if lines:
+                        page_text = rebuild_layout(lines)
+                    else:
+                        page_text = page.get("ParsedText", "")
+                    
+                    if page_text.strip():
+                        all_pages_text.append(page_text.strip())
+                
+                final_text = "\n\n".join(all_pages_text).strip()
+                
+                if final_text:
+                    return final_text
+            
+            except requests.exceptions.RequestException as e:
+                logger.error(f"Network Error: {e}")
+            except ValueError as e:
+                logger.error(f"JSON Error: {e}")
             except Exception as e:
-                print(f"    Retrying OCR: {e}")
-
+                logger.error(f"Unexpected Error: {e}")
+            
             time.sleep(REQUEST_DELAY)
-
+    
     return None
 
 
 # ==============================
-# SAVE INDIVIDUAL JOB OCR TO FILE
+# LAYOUT RECONSTRUCTION
+# ==============================
+
+def rebuild_layout(lines):
+    """Converts OCR.Space TextOverlay lines into formatted text"""
+    rows = defaultdict(list)
+    
+    for line in lines:
+        y = line.get("MinTop", 0)
+        y_key = round(y / 8) * 8
+        
+        for word in line.get("Words", []):
+            x = word.get("Left", 0)
+            text = word.get("WordText", "").strip()
+            
+            if text:
+                rows[y_key].append((x, text))
+    
+    final_lines = []
+    
+    for y in sorted(rows.keys()):
+        words = sorted(rows[y], key=lambda item: item[0])
+        
+        row_text = ""
+        prev_x = 0
+        
+        for x, word in words:
+            gap = x - prev_x
+            
+            if prev_x == 0:
+                row_text += word
+            elif gap > 220:
+                row_text += "        " + word
+            elif gap > 130:
+                row_text += "     " + word
+            elif gap > 70:
+                row_text += "   " + word
+            else:
+                row_text += " " + word
+            
+            prev_x = x
+        
+        final_lines.append(row_text.rstrip())
+    
+    return "\n".join(final_lines)
+
+
+# ==============================
+# SAVE JOB OCR TO FILE
 # ==============================
 
 def save_job_ocr_to_file(serial, title, url, content, total_pages, successful_pages):
     """Save OCR result for a single job to OCR-PDF-TXT folder"""
     ensure_folders()
-
-    # Create filename from job title
+    
     safe_title = sanitize_filename(f"{serial}_{title}")
     filename = f"{safe_title}-PDF.txt"
     filepath = os.path.join(OCR_FOLDER, filename)
-
-    # Only save if file doesn't exist (avoid overwriting)
-    if os.path.exists(filepath):
-        print(f"  OCR file already exists: {filename}")
-        return filepath
-
+    
     with open(filepath, "w", encoding="utf-8") as f:
         f.write("=" * 80 + "\n")
         f.write(f"Serial: {serial}\n")
         f.write(f"Job Title: {title}\n")
         f.write(f"Source URL: {url}\n")
         f.write(f"Total Pages: {total_pages}\n")
-        f.write(f"Successfully OCR'd Pages: {successful_pages}/{total_pages}\n")
+        f.write(f"Successfully Processed Pages: {successful_pages}/{total_pages}\n")
         f.write(f"Timestamp: {datetime.now()}\n")
         f.write("=" * 80 + "\n\n")
         f.write(content)
-
-    print(f"  Saved OCR: {filename}")
+    
+    logger.info(f"Saved OCR: {filename}")
     return filepath
 
 
@@ -503,21 +718,17 @@ def filter_noise(text):
         "disclaimer",
         "index",
         "blank page",
-        "this page intentionally left blank",
-        "www.",
-        ".com",
-        "published by"
+        "this page intentionally left blank"
     ]
     lines = text.splitlines()
     cleaned = []
-
+    
     for line in lines:
         line_lower = line.lower()
-        # Skip if line contains noise keywords AND is short (likely header/footer)
         if any(k in line_lower for k in noise_keywords) and len(line.strip()) < 100:
             continue
         cleaned.append(line)
-
+    
     return "\n".join(cleaned)
 
 
@@ -527,21 +738,11 @@ def filter_noise(text):
 
 def clean_ocr(text):
     """Remove garbage, normalize whitespace, reduce token count"""
-    # First filter noise pages
     text = filter_noise(text)
-
-    # Remove excessive newlines
     text = re.sub(r"\n\s*\n", "\n", text)
-
-    # Keep important Unicode characters
     text = re.sub(r"[^\x00-\x7F₹€£¥%/().,:-]+", " ", text)
-
-    # Collapse multiple spaces
-    text = re.sub(r"\s{2,}", " ", text)
-
-    # Remove common OCR artifacts but keep important symbols
+    text = re.sub(r"[ \t]{2,}", "  ", text)
     text = re.sub(r"[|•·●]", "", text)
-
     return text.strip()
 
 
@@ -551,38 +752,34 @@ def clean_ocr(text):
 
 def generate_summary(serial, title, file_path):
     """Generate summary from OCR text file"""
-
-    # Check if already summarized
     processed_summaries = load_processed_summaries()
+    
     if str(serial) in processed_summaries:
-        print(f"  Summary already exists for Job #{serial}, skipping...")
+        logger.info(f"Summary already exists for Job #{serial}, skipping...")
         return
-
-    print(f"\n  Generating summary for Job #{serial}: {title}")
-
+    
+    logger.info(f"\nGenerating summary for Job #{serial}: {title}")
+    
     with open(file_path, "r", encoding="utf-8") as f:
-        # Skip header metadata (first 10 lines)
         lines = f.readlines()
-        raw_text = "".join(lines[10:])  # Skip the metadata header
-
-    # Clean OCR text
+        raw_text = "".join(lines[10:])
+    
     text = clean_ocr(raw_text)
-
-    # Log token reduction stats
+    
     original_size = len(raw_text)
     cleaned_size = len(text)
     if original_size > 0:
         reduction = ((original_size - cleaned_size) / original_size) * 100
-        print(f"    Text cleaned: {original_size} → {cleaned_size} chars ({reduction:.1f}% reduction)")
-
+        logger.info(f"Text cleaned: {original_size} → {cleaned_size} chars ({reduction:.1f}% reduction)")
+    
     chunks = chunk_text(text, CHUNK_SIZE)
-    print(f"    Processing {len(chunks)} chunks...")
-
+    logger.info(f"Processing {len(chunks)} chunks...")
+    
     extracted_chunks = []
-
+    
     for i, chunk in enumerate(chunks):
-        print(f"    Gemini chunk {i + 1}/{len(chunks)}")
-
+        logger.info(f"Gemini chunk {i + 1}/{len(chunks)}")
+        
         prompt = f"""
 Extract recruitment details from this notification text.
 
@@ -591,50 +788,39 @@ Ignore OCR noise.
 TEXT:
 {chunk}
 """
-
+        
         success = False
-
+        
         for attempt in range(len(GEMINI_API_KEYS)):
-
             gemini_key = get_next_gemini_key()
             temp_client = genai.Client(api_key=gemini_key)
-
+            
             try:
                 response = temp_client.models.generate_content(
                     model=MODEL,
                     contents=prompt
                 )
-
                 extracted_chunks.append(response.text)
-                time.sleep(1)
-
+                # ✅ FIX 9: ADD RATE LIMIT PROTECTION
+                time.sleep(2)
                 success = True
                 break
-
             except Exception as e:
-                print(f"    Gemini key failed, switching... ({attempt + 1}/{len(GEMINI_API_KEYS)})")
-                print(f"    Error: {e}")
-
+                logger.warning(f"Gemini key failed, switching... ({attempt + 1}/{len(GEMINI_API_KEYS)})")
+                logger.warning(f"Error: {e}")
+        
         if not success:
-            print("    All Gemini API keys failed, skipping chunk")
-            if "503" in str(e) or "unavailable" in str(e).lower():
-                print("    Rate limited, waiting 10 seconds...")
-                time.sleep(10)
-                try:
-                    response = client.models.generate_content(
-                        model=MODEL,
-                        contents=prompt
-                    )
-                    extracted_chunks.append(response.text)
-                except:
-                    print("    Retry failed, skipping chunk")
-
+            logger.error("All Gemini API keys failed for this chunk.")
+            logger.info("Waiting 10 seconds before next chunk...")
+            time.sleep(10)
+            continue
+    
     if not extracted_chunks:
-        print("    No chunks successfully processed, skipping summary")
+        logger.error("No chunks successfully processed, skipping summary")
         return
-
+    
     combined_data = "\n".join(extracted_chunks)
-
+    
     format_prompt = f"""
 You are a STRICT formatting engine with enhanced data verification capabilities.
 
@@ -825,45 +1011,41 @@ For Scheduled Caste (SC): [Number for SC - CALCULATE FROM ZONE-WISE DATA IF NOT 
 DATA TO FORMAT:
 {combined_data}
 """
-
+    
     try:
         response = None
-
         for attempt in range(len(GEMINI_API_KEYS)):
-
             gemini_key = get_next_gemini_key()
             temp_client = genai.Client(api_key=gemini_key)
-
             try:
                 response = temp_client.models.generate_content(
                     model=MODEL,
                     contents=format_prompt
                 )
+                # ✅ FIX 9: ADD RATE LIMIT PROTECTION
+                time.sleep(2)
                 break
-
             except Exception as e:
-                print(f"    Gemini key failed, switching... ({attempt + 1}/{len(GEMINI_API_KEYS)})")
-                print(f"    Error: {e}")
-
+                logger.warning(f"Gemini key failed, switching... ({attempt + 1}/{len(GEMINI_API_KEYS)})")
+                if "503" in str(e):
+                    time.sleep(5)
+        
         if response is None:
-            print("    All Gemini API keys failed during formatting")
+            logger.error("All Gemini API keys failed during formatting")
             return
-
-        # Save to Summaries folder with clean name
+        
         safe_title = sanitize_filename(f"{serial}_{title}")
         summary_filename = f"{safe_title}-SUMMARY.md"
         summary_path = os.path.join(SUMMARY_FOLDER, summary_filename)
-
+        
         with open(summary_path, "w", encoding="utf-8") as f:
             f.write(response.text)
-
-        print(f"    Summary saved: {summary_filename}")
-
-        # Mark as processed
+        
+        logger.info(f"Summary saved: {summary_filename}")
         save_processed_summary(serial)
-
+    
     except Exception as e:
-        print(f"    Failed to generate summary: {e}")
+        logger.error(f"Failed to generate summary: {e}")
 
 
 # ==============================
@@ -875,128 +1057,133 @@ def chunk_text(text, size):
 
 
 # ==============================
-# OCR PIPELINE WITH CACHE
+# MAIN PROCESSING PIPELINE
 # ==============================
 
 def process_all():
-    # First, verify and fix any inconsistencies in processed files
-    print("\nVerifying processed files...")
+    """Main pipeline with HTML handling"""
+    logger.info("\nVerifying processed files...")
     verify_processed_files()
-
+    
     jobs = extract_pdf_links()
+    logger.info(f"🔍 Total Jobs Found In Sample.md: {len(jobs)}")
     processed_pdfs = load_processed_pdfs()
     processed_summaries = load_processed_summaries()
-
+    
     ensure_folders()
-
+    
     for serial, title, url in jobs:
-        print(f"\n{'=' * 60}")
-        print(f"Job #{serial}: {title}")
-        print(f"{'=' * 60}")
-
-        # Check PDF status
+        logger.info(f"\n{'=' * 60}")
+        logger.info(f"Job #{serial}: {title}")
+        logger.info(f"{'=' * 60}")
+        
         pdf_already_processed = url in processed_pdfs
         summary_already_exists = str(serial) in processed_summaries
-
-        print(f"  PDF Processed: {'✅' if pdf_already_processed else '❌'}")
-        print(f"  Summary Generated: {'✅' if summary_already_exists else '❌'}")
-
-        # Skip only if BOTH exist
+        
+        logger.info(f"PDF Processed: {'✅' if pdf_already_processed else '❌'}")
+        logger.info(f"Summary Generated: {'✅' if summary_already_exists else '❌'}")
+        
         if pdf_already_processed and summary_already_exists:
-            print(f"  ✅ Job #{serial} completely processed, skipping...")
+            logger.info(f"⚠️ Job #{serial} already fully processed. Skipping.")
             continue
-
-        # Handle case where PDF is marked as processed but file might be missing
+        
         file_path = None
         if pdf_already_processed and not summary_already_exists:
-            # Try to find the OCR file
             file_path = find_ocr_file_by_serial(serial, title)
-
             if file_path:
-                print(f"  ✅ Found OCR file: {os.path.basename(file_path)}")
+                logger.info(f"✅ Found OCR file: {os.path.basename(file_path)}")
             else:
-                print(f"  ⚠️ PDF marked as processed but no OCR file found. Will reprocess...")
-                pdf_already_processed = False  # Force reprocess
-
-        # Download and OCR if needed
+                logger.warning(f"⚠️ PDF marked as processed but no OCR file found. Will reprocess...")
+                pdf_already_processed = False
+        
         if not pdf_already_processed:
-            print(f"  Need to download & OCR...")
+            logger.info(f"Need to download & process...")
             try:
-                pdf_stream = download_pdf(url)
-                chunks, total_pages = split_pdf(pdf_stream)
-
-                successful_pages = 0
-                job_ocr_text = ""
-
-                for page_no, chunk in chunks:
-                    print(f"    OCR Page {page_no}/{total_pages}")
-
-                    text = ocr_chunk(chunk)
-
-                    if text:
-                        successful_pages += 1
-                        page_content = f"\n--- Page {page_no} ---\n{text}"
-                        job_ocr_text += page_content
-                    else:
-                        job_ocr_text += f"\n--- Page {page_no} OCR FAILED ---\n"
-
-                # Save OCR file
-                file_path = save_job_ocr_to_file(
-                    serial=serial,
-                    title=title,
-                    url=url,
-                    content=job_ocr_text,
-                    total_pages=total_pages,
-                    successful_pages=successful_pages
-                )
-
-                # Mark PDF as processed
+                # ✅ FIX 1: PASS serial TO download_pdf
+                file_stream, file_type = download_pdf(url, serial=serial)
+                
+                if file_type == "pdf":
+                    logger.info(f"Processing as PDF with OCR...")
+                    # ✅ FIX 13: WRAP PDF PARSING IN TRY-CATCH
+                    try:
+                        chunks, total_pages = split_pdf(file_stream)
+                    except Exception as e:
+                        logger.error(f"PDF Parse Error: {e}")
+                        log_failed_download(serial, title, url, f"PDF Parse Error: {e}")
+                        continue
+                    
+                    successful_pages = 0
+                    job_content = ""
+                    
+                    for page_no, chunk in chunks:
+                        logger.info(f"OCR Page {page_no}/{total_pages}")
+                        text = ocr_chunk(chunk)
+                        
+                        if text:
+                            successful_pages += 1
+                            page_content = f"\n--- Page {page_no} ---\n{text}"
+                            job_content += page_content
+                        else:
+                            job_content += f"\n--- Page {page_no} OCR FAILED ---\n"
+                    
+                    file_path = save_job_ocr_to_file(
+                        serial=serial,
+                        title=title,
+                        url=url,
+                        content=job_content,
+                        total_pages=total_pages,
+                        successful_pages=successful_pages
+                    )
+                
+                elif file_type == "html":
+                    logger.info(f"Processing as HTML (no OCR needed)...")
+                    text = extract_text_from_html(file_stream, url)
+                    file_path = save_html_to_file(
+                        serial=serial,
+                        title=title,
+                        url=url,
+                        content=text
+                    )
+                    logger.info(f"HTML extracted: {len(text)} characters")
+                    
+                    # Also save to OCR folder for consistency
+                    ocr_file_path = save_job_ocr_to_file(
+                        serial=serial,
+                        title=title,
+                        url=url,
+                        content=text,
+                        total_pages=1,
+                        successful_pages=1
+                    )
+                    file_path = ocr_file_path
+                
+                else:
+                    logger.error(f"Unsupported file type: {file_type}")
+                    continue
+                
                 save_processed_pdf(url)
-
+            
             except Exception as e:
-                print(f"    ❌ PDF PROCESS FAILED: {e}")
-
-                # Log failed download
+                logger.error(f"❌ PROCESSING FAILED: {e}")
                 log_failed_download(serial, title, url, str(e))
-
-                # Special handling for EIL (Job #106) and similar problematic sites
-                if "eil.co.in" in url or "aai.aero" in url:
-                    print(f"\n    💡 TROUBLESHOOTING TIPS:")
-                    print(f"      1. Try downloading manually from: {url.replace('http://', 'https://')}")
-                    print(f"      2. The server might be blocking automated requests")
-                    print(f"      3. You can try using a VPN if the server is geographically restricted")
-                    print(f"      4. Check if the file exists by visiting the recruitment portal")
-                    print(f"      5. Consider adding the domain to your firewall exceptions")
-                    print(f"      6. Try accessing during off-peak hours\n")
-
                 continue
         else:
-            # PDF already exists and we found the file
             if not file_path:
                 file_path = find_ocr_file_by_serial(serial, title)
-
+            
             if file_path:
-                print(f"  ✅ Using existing OCR file: {os.path.basename(file_path)}")
+                logger.info(f"✅ Using existing file: {os.path.basename(file_path)}")
             else:
-                print(f"  ❌ Could not find OCR file for Job #{serial}")
+                logger.error(f"❌ Could not find file for Job #{serial}")
                 continue
-
-        # Generate summary if needed
+        
         if not summary_already_exists and file_path and os.path.exists(file_path):
-            print(f"  Need to generate summary...")
+            logger.info(f"Need to generate summary...")
             generate_summary(serial, title, file_path)
         elif summary_already_exists:
-            print(f"  ✅ Summary already exists")
+            logger.info(f"✅ Summary already exists")
         else:
-            print(f"  ❌ OCR file not found or invalid: {file_path}")
-
-
-# ==============================
-# TEXT CHUNKING (duplicate, keeping for compatibility)
-# ==============================
-
-def chunk_text(text, size):
-    return [text[i:i + size] for i in range(0, len(text), size)]
+            logger.error(f"❌ File not found or invalid: {file_path}")
 
 
 # ==============================
@@ -1005,22 +1192,32 @@ def chunk_text(text, size):
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("JOB NOTIFICATION OCR PIPELINE v3.2")
+    print("JOB NOTIFICATION PROCESSING PIPELINE v4.1")
+    print("ALL CRITICAL FIXES APPLIED")
     print("=" * 60)
-
+    
     print("\nAPI Key Status:")
     print(f"  OCR API Key: {'✅ Set' if OCR_API_KEY else '❌ Missing'}")
-    print(f"  Gemini API Key: {'✅ Set' if GEMINI_API_KEYS else '❌ Missing'}")
+    print(f"  Gemini API Keys: {'✅ Set' if any(k.strip() for k in GEMINI_API_KEYS) else '❌ Missing'}")
     print("-" * 60)
-
+    
+    try:
+        from bs4 import BeautifulSoup
+        print("✅ BeautifulSoup installed")
+    except ImportError:
+        print("❌ BeautifulSoup not installed. Run: pip install beautifulsoup4")
+        exit(1)
+    
     process_all()
-
+    
     print("\n" + "=" * 60)
     print("✅ ALL JOBS PROCESSED")
     print("=" * 60)
     print(f"\n📁 OCR files:     '{OCR_FOLDER}/'")
+    print(f"📁 HTML files:    '{HTML_FOLDER}/'")
     print(f"📁 Summaries:     '{SUMMARY_FOLDER}/'")
     print(f"📋 PDF tracker:   {RECORD_FILE}")
     print(f"📋 Summary tracker: {SUMMARY_RECORD_FILE}")
     print(f"📋 Failed downloads: {FAILED_PDFS_FILE}")
+    print(f"📋 Log file:      pipeline.log")
     print("\n" + "=" * 60)

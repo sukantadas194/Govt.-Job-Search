@@ -1,0 +1,1160 @@
+================================================================================
+Serial: 50
+Job Title: NIC - Scientist B
+Source URL: https://recruitment.nic.in/DetailedSciB.pdf
+Total Pages: 22
+Successfully OCR'd Pages: 21/22
+Timestamp: 2026-04-24 08:34:28.362528
+================================================================================
+
+
+--- Page 1 OCR FAILED ---
+
+--- Page 2 ---
+Data Science and AI
+50
+22
+7
+3
+13
+5
+2
+a. Locomotive disability (OA, OL, BL,
+OAL) - 1
+b. to be Dicitics Mind tess amongst
+1 PH-MD backlog vacancy
+NCL - Non Creamy Layer
+Note: The number of advertised posts is tentative, the actual number of posts may increase or decrease at the sole
+discretion of NIC.
+3. ELIGIBILITY CRITERIA
+3.1 Valid Score in the GATE 2024/2025/2026 in the following test paper:
+GATE test paper
+Computer Sciences and Information Technology
+Electronics and Communication Engineering
+Data Science and Artificial Intelligence
+(Table-III)
+GATE paper code
+CS
+EC
+DA
+3.2 ESSENTIAL EDUCATIONAL QUALIFICATION:
+Discipline
+Essential Qualification
+Bachelor Degree in Engineering OR Bachelor in
+Technology OR Department of Electronics and
+Accreditation of Computer Courses B-level OR
+Computer
+Sciences & IT
+Associate Member of Institute of Engineers OR
+Graduate
+Institute
+of
+Electronics
+and
+Telecommunication
+Degree in Science (MSc) OR Master Degree in
+(Table-IV)
+Corresponding GATE Paper Code
+Computer
+Science and Information
+Technology (GATE Paper Code: CS)
+Note: Must Possess VALID GATE score
+(i,e, GATE- 2024 or 2025 or 2026) in the
+Paper Code - CS
+Computer Application OR Master Degree in
+Engineering /Technology (ME /M.Tech) OR
+Master Degree in Philosophy (M Phil)
+Electronics and
+Communication
+In the below mentioned Fields (single or in
+combination):
+Electronics
+Communication
+Engineering (GATE Paper Code : EC)
+Note: Must Possess VALID GATE score
+(i,e, GATE- 2024 or 2025 or 2026) in the
+Paper Code - EC
+Data Science
+and AI
+Electronics,
+Electronics and Communication,
+Computer Sciences, Communication, Computer
+Data Science and Artificial Intelligence
+and
+Networking
+Security,
+Computer
+(GATE Paper Code: DA)
+Application,
+Software System,
+Information
+Technology,
+Information
+Technology
+Management,
+Informatics,
+Computer
+Note: Must Possess VALID GATE score
+(i,e, GATE- 2024 or 2025 or 2026) in the
+Management, Cyber law, Electronics and
+Paper Code - DA
+Instrumentation
+3.2.1
+3.2.2
+The candidate should have obtained the essential qualification on the cut-off date i.e. 31/03/2026.
+No claim of possession of a qualification equivalent to the prescribed qualification in Table-IV shall
+be entertained.
+3.3 EXPERIENCE: No Experience Required.
+Detailed Advertisement for the Post of Scientist-B
+Ref. No: NIC/SCB/2026/1
+Page 2 of 10
+--- Page 3 ---
+3.4 UPPER AGE LIMIT (completed years as on 31/03/2026)
+Posts
+UR /
+EWS
+Category-wise Upper age limit not exceeding (in years)
+SC/ST
+OBC
+PwBD
+(NCL*)
+#Service Candidate
+(Table-V)
+Ex-
+Service
+men
+As per
+Govt.
+Rules
+Scientist
+'B'
+30
+35
+33
+40
+{SC/ST PWBD
+Candidates: 45;
+OBC (NCL) PwBD
+candidate 43}
+UR/EWS Service
+Candidate: 35;
+SC/ST Service
+Candidate: 40;
+OBC (NCL) Service
+Candidate: 38
+*NCL - Non Creamy Layer
+#Provided that
+3.4.1 There shall be age relaxation for 5 years for candidates serving in Government Organizations working
+n post which are in the same line or allied cadres and where a relationship could be established tha
+he service already rendered in a particular post will be useful for the efficient discharge of duties of
+the advertised post.
+3.4.2
+The upper age limit in respect of SC, ST, OBC (NCL) and PwBD and other special categories of
+persons shall be relaxable in accordance with the orders issued by the Central Government from time
+3.4.3
+he age relaxation for SC/ST/OBC(NCL) candidate is applicable for the post reserved for then
+lowever relaxation in age limit for PwBD candidate will be applicable irrespective of the fa
+whether the post is reserved for them or not, provided the post is identified suitable for them.
+NOTE (Age calculation): The crucial date for determining the age limit shall be 31/03/2026
+PLACE OF POSTING:
+The person selected may be posted anywhere in India and outside India in the interest of the Organization.
+5.
+HOW TO APPLY:
+Before applying, candidates are advised to go through this advertisement carefully in detail to
+determine their eligibility as per laid down criteria for the post.
+The admission at any stage of the recruitment will be purely provisional, subject to satisfying the
+prescribed eligibility conditions.
+Candidates are requested to apply only by ONLINE at https://recruitment.nic.in
+between
+27/03/2026 to 24/04/2026 (5:30 p.m). No other means/mode of application will be accepted.
+Candidates are required to have valid E-mail Id and active Mobile Number. The procedure/steps
+for filling up of applications online is briefed as under.
+The complete Application can be submitted in following 4 steps:
+STEP 1:
+STEP
+2:
+STEP 3:
+STEP 4:
+Registration
+Fill online Application Form & uploading documents.
+Payment of application fee online (if applicable, see section 5.2 for details)
+Download Confirmation Page
+Detailed Advertisement for the Post of Scientist-B
+Ref. No: NIC/SCB/2026/1
+Page 3 of 10
+--- Page 4 ---
+Note: Candidates are advised to fill up the online application form very carefully, as no change in
+name / category / address / mobile number / email ID etc. will be permissible after submitting the
+application.
+The application shall be treated as complete only if all the four mandatory steps (Step 1, Step2, Step
+3 (if applicable) and Step 4) are completed successfully. In case, candidate is not able to submit
+fee by closing date and time, or the application is otherwise incomplete, his/her candidature
+will summarily be rejected and no further query or complaint will be entertained in this regard.
+Applicant can view the Application details from the "Already Registered Candidate" option
+available on the home page by logging with correct login credentials i.e. Application number and
+Password created. Applicant is required to make sure that 'Steps for filling up Application Form are
+completed in all respect to download the Confirmation Page' otherwise application will be treated as
+incomplete and summarily rejected and no further query or complaint will be entertained in this
+regard.
+IMPORANT: Aadhaar based authentication shall be used at every stage of the recruitment process.
+5.1 CHECKLIST:
+Following should be kept handy before applying online:
+a) Credit Card/Debit card/Net Banking Details (if fee is applicable),
+b) Scanned image of recent coloured Photograph (JPEG/JPG format, Min size 50 KB and Max size 200 KB)
+c) Scanned image of Signature (in blue or black ink) (JPEG/JPG format, Min size 10 KB and Max size 50 KB)
+d) Separate self-attested scanned copies of the following documents (PDF format, Min size 10 KB and Max
+size 500 KB):
+• Certificate of Date of Birth Proof (issued by Municipality etc or Matriculation/High School / SSC
+Certificate) ;
+• Matriculation Certificate;
+• Senior Secondary Certificate;
+• Graduation Certificate;
+• GATE Score Card ;
+• Post-Graduation Certificate (If any) ;
+• Essential qualification Certificate, which makes him/her eligible for applying for the post alongwith
+marksheet;
+• CGPA conversion certification (if applicable) (refer clause 6.8 (c))
+• Category certificate (SC/ST/OBC(NCL)/EWS) (if applicable) (refer clause 7.9) ;
+• PwBD certificate (Minimum 40% permanent disability) (if applicable) (refer clause 7.9) ;
+Experience Certificate (if any);
+• NOC (if applicable) (as per Annexure VII) ; and
+Age relaxation certificate (if applicable) (as per Annexure VIII or IX).
+5.2 APPLICATION FEES:
+The applicants shall pay the below mentioned Application Fee (non-refundable) (if applicable)
+through online mode only:
+(Table-VI)
+CATEGORY
+FEE
+SC/ST/ PwBD/ Women candidates
+Nil
+UR / OBC (NCL) / EWS
+Rs.800/-
+Candidates who are applying for more than one discipline need to pay Rs. 800/- for every discipline.
+Detailed Advertisement for the Post of Scientist-B
+Ref. No: NIC/SCB/2026/1
+Page 4 of 10
+--- Page 5 ---
+The bank charges towards remittance of application fee if any, will have to be borne by the candidate.
+Fee through any other mode like Cash, Demand Draft, Pay Order, Cheque or Challan will not be
+accepted.
+Note: Application fee once paid will not be refunded.
+6.
+SELECTION PROCESS:
+6.1 Only those candidates fulfilling the eligibility criteria mentioned at point 3 and have registered their
+application on the portal of NIC shall be considered for further selection process in NIC.
+6.2 Eligible candidates will be shortlisted for interview/interaction, on the basis of GATE Score in the
+ratio of 1:5 subject to their availability in order of discipline-wise and category-wise merit list. If there
+are more than one candidate with the same GATE Score (while shortlisting for interaction/interview),
+then all the candidates with the same Score will be shortlisted and called for interaction/interview
+irrespective of the ratio stated above.
+6.3 Equal weightage will be given to GATE 2024, GATE 2025 and GATE 2026 Scores.
+6.4 Shortlisted candidates can download their call letters for the Personal Interaction/Interview from the
+link available on the website (www.recruitment.nic.in). Candidates will have to regularly visit NIC
+recruitment website for link or any other information.
+6.5 Mere fulfilling of requirements as laid down in the advertisement does not qualify a candidate to be
+called for personal interaction/interview.
+6.6 Document verification will be conducted before Interaction/Interview. In case a candidate does not
+appear for document Verification along with original documents, he/she shall not be eligible for
+personal interaction/interview/provisional selection, and his/her candidature shall be rejected.
+6.7 Upon completion of document Verification, candidates found eligible only shall be allowed to appear
+for interaction/interview, subject to fulfillment of all other eligibility criteria prescribed for the post.
+6.8 Candidates will be assessed in the interaction/interview based on the following attributes (Max marks
+50):
+a) Technical (Academic) knowledge
+b) Presentation/Communication Skill/Comprehension
+c) Academic proformance (0.05 mark for each percentage in the degree of Essential qualification)
+In case of CGPA, if the university does not provide a formula, the candidate must provide a
+certificate from the Registrar to that effect.
+6.9 Only those candidates securing minimum qualifying marks of 50% (for Unreserved category) and 40%
+(for EWS/OBC/SC/ST/PwBD category) in the Personal Interaction/Interview will be considered for
+preparation of the final merit list. Candidates who do not qualify the interaction/interview will not be
+considered for final selection irrespective of their GATE score.
+6.10 The final selection of the candidates will be purely on the basis of category-wise and discipline-wise
+merit of aggregate of 60% weightage of gate score and 40% weightage of marks in personal
+interview/interaction.
+(Table-VID)
+Parameter
+Weightage (%) of Marks
+GATE-2026 / GATE-2025 / GATE-2024**
+Personal Interaction/Interview
+40
+Detailed Advertisement for the Post of Scientist-B
+Ref. No: NIC/SCB/2026/1
+Page 5 of 10
+--- Page 6 ---
+** The candidate must submit their best GATE score from any one of the eligible years, in the
+discipline applied (as specified in Section 3.1).
+6.11
+Resolution of TIE cases:
+In case of a tie in the total marks (GATE Score weightage + Personal Interaction/Interview weightage)
+scored between two or more candidates, following criteria will be adopted in order of sequence for
+deciding position in merit list:
+First - The candidate with higher scores in the GATE paper shall be ranked higher in the merit list.
+Second - If two candidates have equal scores in the GATE paper, then candidate with more marks in
+the Technical (Academic) knowledge section of the interaction/interview, would be ranked higher.
+Third - If there is still a tie, then candidate older in age shall be ranked higher in the merit list.
+7. VERIFICATION OF DOCUMENTS:
+Verification of requisite documents will be conducted before the interaction/interview. Candidates will be
+interviewed only after production of original documents for verification. If the identity of the candidate is in
+doubt or he/she cannot produce the requisite documents or there is mismatch of information in the
+documents, his/her candidature will be rejected. No additional time will be given to produce original
+documents.
+The following original documents will be verified at the time of interaction/interview. Non-production of
+original documents will debar the candidate from appearing for the interaction/interview:
+7.1 Date of Birth proof: Birth certificate issued by Municipality / Matriculation Examination Certificate
+indicating Date of Birth
+7.2 Matriculation and Senior Secondary Examination Certificate / Marksheet.
+7.3 GATE Score card for the year 2024 / 2025 / 2026 as the case may be.
+7.4 Essential Qualification Certificate:
+Mark sheets indicating date of declaration of result
+Final Degree Certificate
+Provisional passing Certificate (in case final degree certificate is not issued).
+Certificate of conversion of CGPA from the Registrar of the University (if applicable)
+7.5 No Objection Certificate from the organization (applicable for applicants working in Central/State
+Government/PSUs/Aided Institutions/Autonomous Bodies)
+7.6 Applicants are required to furnish a Gazette Notification in respect of change of name, if applicable.
+7.7 Certificate of being Ex-Serviceman (if applicable in the prescribed format at Annexure IX).
+7.8 Age relaxation certificate for in-service candidates (if applicable in the prescribed format at
+Annexure VIII).
+7.9 Caste/Category Certificates:
+(Table-VIl)
+Detailed Advertisement for the Post of Scientist-B
+Ref. No: NIC/SCB/2026/1
+Page 6 of 10
+--- Page 7 ---
+(a)
+(b)
+(c)
+(d)
+For SC/ST
+For
+(NCL)
+OBC
+For PwBD
+/ PwBD
+For EWS
+Relevant Caste Certificate in the prescribed Government of India format
+(Annexure 1) Issued by the Competent Authority on or betore the cut-oft
+date i.e. 31/03/2026.
+Submission of a copy of the latest OBC (NCL) certificate in the format
+(Annexure II) prescribed by the Govt. of India for "Appointment to posts
+under Govt. of India" from a competent authority at the time of application
+and interview.
+The OBC candidates applying for the post must produce a valid OBC (NCL)
+Certificate issued during the Financial Year 2025-26 (i.e. issued on or after
+01.04.2025) in the format for appointment to posts under the Government of
+India, issued by the Competent Authority, in support of their belonging to
+BC Community in the Central list of OBC and to prove that they do not
+belong to "Creamy Layer" of the OBCs
+Candidates are advised to apply and obtain the aforesaid OBNCL
+Certificate issued during financial year 2025-26 (i.e. issued on or after
+01.04.2025) well in time to be eligible for reservation benefit under this
+advertisement. The candidates who fail to produce the prescribed OBC
+(NCL) certificate at the time of document Verification, will not be
+considered under respective category.
+Certificate for OBC must clearly indicate that the candidate does not belong
+to the persons/sections (Creamy Layer) mentioned in Column 3 of Schedule
+to the Government of India, Department of Personnel & Training O.M No
+36012/22/93-Estt(SCT) dated 8/9/93 as amended from time to time.
+OBC (Non-Creamy Layer) certificate issued for appointment to posts under
+the State Government (1.e., belonging to state list of OBC) OR for admission
+to educational purposes will not be considered
+Submission of disability certificate (minimum 40% disability) in prescribec
+format (Annexure - VI / V / VI as applicable) issued by the Government
+Medical Board. Candidates applying against vacancies reserved for PwBD
+category should note that they have to submit valid Permanent Disability
+Certificate (minimum 40% disability) issued by the Competent Authority as
+per Government guidelines (on or before last date of submission of
+application).
+The Certificate for PwBD must indicate the percentage of permanent
+dated 31st January 2019.
+The EWS candidates applying for the post must produce a valid EWS
+Certificate issued for the Financial Year 2024-25 (i.e. valid for the year
+2025-26) in the format for appointment to posts under the Government of
+India, issued by the Competent Authority, in support of their belonging to
+1 perso retire and by ny one of a loving,
+candidate's claim as belonging to EWS.
+Detailed Advertisement for the Post of Scientist-B
+Ref. No: NIC/SCB/2026/1
+Page 7 of 10
+--- Page 8 ---
+(i) District Magistrate / Additional District Magistrate / Collector / Deputy
+Commissioner / Additional Deputy Commissioner/1st Class Stipendiary
+Magistrate/Sub-Divisional Magistrate/Taluka Magistrate/Executive
+Magistrate/Extra Assistant Commissioner.
+(i) Chief Presidency Magistrate/Additional Chief Presidency Magistrate/
+Presidency Magistrate.
+(iii) Revenue Officer not below the rank of Tehsildar.
+(iv) Sub-Divisional Officer of the area where the candidate and /or his/her
+family normally resides.
+Aadhaar Card for aadhaar based authentication.
+Any other Photo ID proof such as, PAN card / Driving License / EPIC ID / any other Government
+issued ID.
+8
+Personal Interaction/Interview:
+Details of date and venue of the interaction/interview of the shortlisted candidates will be provided in the
+Call letter to be downloaded from the link provided on the NIC website (https://recruitment.nic.in/).
+Interactions/Interviews shall be conducted at Delhi or at any other location /mode approved by competent
+authority.
+No request for postponement or change in location shall be allowed/entertained.
+No TA/DA shall be paid for attending the interaction/interview.
+ACTION AGAINST MISCONDUCT.
+Candidates are advised in their own interest that they should not furnish any particulars that are false,
+tampered or, fabricated and should not suppress any material information. A candidate is liable to be
+prosecuted for misconduct if during or at any stage of recruitment, he/she has been found guilty of;
+• Impersonating or procuring impersonation by any person; or
+• Resorting to any irregular means in connection with his/her candidature during Selection process; or
+• Using unfair means or obtaining support for his/her candidature by any means; or
+• Canvassing in any form/using undue influence for his/her candidature by any means; or
+• Submitting
+false certificates/documents/information or concealment/suppression of factual
+information at any stage;
+• Giving wrong information regarding his/her category (SC/ST/OBC(NCL)/EWS/PwBD) while
+applying for the post or thereafter;
+The candidature of such candidates will be summarily rejected/cancelled at any stage of recruitment process /
+will be terminated from service (if already appointed), in addition to rendering himself/herself liable to
+criminal prosecution and may also be liable to be debarred either permanently or for a specified period from
+any recruitment to be conducted by NIC.
+10 IMPORTANT INFORMATION
+10.1
+CITIZENSHIP:
+A Candidate must be either: (a) a citizen of India, or (b) a subject of Nepal, or (c) a subject of Bhutan, or
+(d) a Tibetan refugee who came over to India before 1st January, 1962 with the intention of permanently
+settling in India, or (e) a person of Indian origin who has migrated from Pakistan, Burma, Sri Lanka or
+Detailed Advertisement for the Post of Scientist-B
+Ref. No: NIC/SCB/2026/1
+Page 8 of 10
+--- Page 9 ---
+11
+East African countries of Kenya, Uganda, the United Republic of Tanzania (formerly Tanganyika and
+Zanzibar), Zambia, Malawi, Zaire, Ethiopia and Vietnam with the intention of permanently settling in
+India. Provided that a candidate belonging to categories (b), (c), (d) and (e) above shall be a person in
+whose favor a certificate of eligibility has been issued by the Government of India.
+10.2
+CRUCIAL DATE FOR AGE, QUALIFICATION AND EXPERIENCE:
+The Crucial date for calculating the age as well as completion of eligibility conditions with
+regard to essential qualifications, category, age relaxation etc. shall be the cut-off date i.e.
+31/03/2026 which will remain unchanged even in case of extension of the closing date for
+submission of applications.
+10.3
+CORRESPONDENCE
+All correspondences with the candidate in connection with the recruitment will be made by NIC
+through e-mails/SMS on the registered e-mail ID and Mobile number submitted by the
+candidate. The candidates must, therefore indicate his/her primary email ID and active primary
+mobile number in the online application form on which the communication regarding this
+recruitment process would reach to the applicant. Intimation regarding joining/appointment of
+selected candidates will also be made through the registered Email ID and Mobile number by
+NIC. Hence the candidate must regularly check their emails/SMS.
+It is implicit that the candidate upon registration in the recruitment portal agrees to permit NIC
+to send Transactional SMS/e-mail communications to the registered email ID/Mobile phone.
+After declaration of result, candidates are required to regularly check the recruitment website
+(https://recruitment.nic.in/) for further course of action.
+Disclaimer: In case of failure of candidates) to respond to NIC communication(s) online
+as above, during recruitment process, resulting in rejection of candidature, NIC shall not
+be responsible.
+10.4 APPLICATION FEE PAYMENT & ELIGIBILITY
+NIC will not be responsible in case of incomplete transactions during the online payment
+process. It is the sole responsibility of the candidate to ensure that the correct payment of
+application fee has been made successfully. Application fee once paid is non-refundable.
+Applicants, in their own interest, should check their eligibility for the post before remitting the
+application fee. Only qualifications mentioned against post shall be considered for determining
+the eligibility.
+IMPORTANT INSTRUCTIONS
+11.1
+11.2
+Applications which are not in conformity with the requirement indicated in the advertisement,
+are liable to be rejected.
+Candidates at the time of interaction/interview shall bring the downloaded Interview Call
+etter, Originals documents as stated at point 7 alongwith one recent passport size colou
+hotograph, failing which they will not be allowed to appear in the interaction/interview
+11.3
+Final Selection of candidates for appointment to the above advertised post will be based on
+meeting the prescribed eligibility criteria, GATE Score and the proformance in the
+interaction/interview.
+Detailed Advertisement for the Post of Scientist-B
+Ref. No: NIC/SCB/2026/1
+Page 9 of 10
+--- Page 10 ---
+If at any point of time it is found that the information furnished by the candidate was incorrect
+in any respect or forged /fabricated documents were presented by any candidate, his/her
+candidature will be cancelled and in case the candidate has already joined the post, his services
+shall be summarily terminated.
+11.4.1 The candidates should upload only relevant documents. It should be kept in view that
+uploading of irrelevant documents may lead to disqualification of the
+candidature/rejection of the application Form. Non-submission of the documents as
+stated at Checklist 5.1 may lead to cancellation/rejection of the Application Form.
+11.4.2
+Candidates shall have eligibility qualification complete in all respects by cut-off date.
+Qualifications obtained through Open Universities/Distance Education mode that are
+approved by Distance Education Council and wherever necessary, by AICTE, are
+recognized for the purpose of employment under Central Government vide Gazette
+Notification No. 44 dated Ist March 1995 alone shall be considered as eligible.
+11.4.3
+Before final submission of the on-line Application Form, the candidates must go
+through the same carefully. It shall be noted that Incomplete / Incorrect
+application form will be summarily rejected.
+11.4.4
+After submitting the ONLINE Application Form, the candidates are advised to
+download the Confirmation Page and the Application Number should be referred to in
+all future correspondence with NIC at helpdesk-nic@nic.in in connection with this
+recruitment process.
+11.4.5
+Candidates working with Central Govt./ State Govt./PSU/Autonomous bodies have to
+furnish 'NOC' from the authority concerned. The 'NOC" should also confirm that no
+disciplinary/Vigilance case is either pending or contemplated. Withdrawal of
+candidature on account of non-furnishing of any information will not confer any right
+to carry forward or retain the candidature for future recruitment.
+11.4.6
+Any request for change of Address or Email ID or Mobile number after submission of
+the application form will not be entertained. Also no change in particulars shall be
+permitted and the particulars furnished by the applicant in the online application form
+will be taken as final.
+11.4.7 Court of jurisdiction for any dispute will be in Delhi.
+11.4.8 No query seeking advice on eligibility or posting location will be entertained.
+11.4.9 The post carries with it All India liability to be posted anywhere in India.
+11.4.10 The decision of NIC in respect of all matters pertaining to this recruitment would be
+final and irrevocable on all candidates.
+11.4.11 NIC reserves the right to modify/alter/restrict/enlarge/cancel the recruitment process,
+if need arises, without issuing any further notice or assigning any reasons thereafter.
+The decision of the NIC authority will be final, and no appeal will be entertained in
+this regard.
+11.4.12 For any problems related to submission of online application form/downloading of
+admit card, please send e-mail to helpdesk-nic@nic.in mentioning advertisement
+number & application number in the subject. No other query will be entertained at this
+mail-id.
+Detailed Advertisement for the Post of Scientist-B
+Ref. No: NIC/SCB/2026/1
+Page 10 of 10
+--- Page 11 ---
+Annexure-l
+FORM OF CASTE CERTIFICATE FOR SC/ST
+This is to certify that Shri*/Smt/Kumari
+Village/Town
+State/Union Territory belongs to the
+/District/Division*
+the
+under:
+son/daughter of
+caste of Scheduled Caste /Tribe*
+*The Constitution Scheduled Caste Order,, 1950.
+*The Constitution Scheduled Tribe Order, 1950.
+*The Constitution (Scheduled Castes) (Union Territories) (Part C States) Order, 1951;
+*The Constitution of (Scheduled Tribes (Union Territories) (part C States) Order, 1951;
+As amended by the Scheduled Caste and Scheduled Tribes List (Modification Order 1956, the Bombay Reorganisation
+Act, 1960, the Punjab Reorganisation Act, 1966, the State of Himachal Pradesh Act, 1970, the North Eastern Areas
+(Reorganisation) Act, 1971 and Scheduled Castes and Scheduled Tribes Orders (Amendment) Act 1976
+*The constitution (Jammu and Kashmir) * Scheduled Castes Orders, 1965.
+*The constitution (Andaman and Nicobar Islands) * Scheduled Tribe order, 1959, as amended by the Scheduled Castes
+and Scheduled Tribes Orders 9Amendement) Act, 1976.
+*The constitution (Dadra and Nagar Haveli) * Scheduled Castes order, 1962.
+*The constitution (Dadra and Nagar Haveli) * Scheduled Tribes order, 1962
+*The constitution (Pondicherry) Scheduled Castes order, 1964.
+*The constitution (Uttar Pradesh) Scheduled Tribes order, 1967.
+*The constitution (Goa, Daman and Diu) Scheduled Castes order, 1968.
+*The constitution (Goa, Daman and Diu) Scheduled Tribes order, 1968
+*The constitution (Nagaland) Scheduled Tribes order, 1970.
+*The constitution (Sikkim) Scheduled Castes order, 1978.
+*The constitution (Sikkim) Scheduled Tribes order, 1978.
+*The constitution (Jammu & Kashmir) Scheduled Tribes order, 1989.
+*The constitution (SC) Orders (Amendment) Act, 1990.
+*The constitution (ST) Orders (Amendment) Ordinance Act, 1991.
+*The constitution (ST) Orders (Amendment) Ordinance Act, 1996.
+*The constitution (Scheduled Castes) Orders (Amendment) Act. 2002,
+The constitution (Scheduled Castes) Orders (Second Amendment) Act, 2002
+The Scheduled Castes and Scheduled Tribes Orders (Amendment) Act 200:
+Applicable in case of Scheduled Caste/Scheduled Tribes person who have migrated from one State/ union Territory
+Administration. This certificate issued on the basis of he Scheduled Castes/Scheduled Tribes Certificate issued to
+Shri/Shrimati*
+father/mother*
+_ of Shri/Shrimati/Kumari
+Village/Town
+/District /Division*
+of the
+State/Union Territory who belongs to the
+caste of Scheduled Caste* /Tribe which is recongised as
+Scheduled Caste/Scheduled Tribe in the Station/ Union Territory Issued by the
+dated
+3.
+Shri/Shrimati/Kumari*
+village/Town*_
+District Division*.
+- /or*
+of
+s/her* family ordinarily reside(s)
+the
+state/Union Territor
+of
+Place:
+Date:
+Signature:
+Designation:
+with seal of Office
+State/Union Territory:
+*Please delete the words, which are not applicable. @ Please quote specific Presidential Order % Delete paragraph,
+Note: (a) The Term "ordinarily resides(s) used here will have the same meaning as in Section 20 of the Representation
+of People Act, 1950. The Caste Certificate must be issued by the Competent Authorities in the above prescribed format.
+--- Page 12 ---
+Annexure-ll
+FROM OF CERTIFICTE TO BE PRODUCED BY OTHER BACKWARD CLASSES (OBC) APPLYING FOR APPOINTMENT TO POST
+UNDER GOVERNMENT OF INDIA.
+This
+is
+to
+the
+certify that Shri/Smt/Kum*
+_of village
+. state belongs to
+son/daughter of
+_ District/Division
+in
+_ the community which is recognized
+as a backward class under;
+i)
+ii)
+iii)
+iv)
+V)
+vi)
+vii)
+viii)
+ix)
+x)
+Resolution No.12011/68/93-BCC, dated the 10th September, 1993 published in the Gazette of India Extraordinary - Part
+1, Section I, No. 186 dated 13th September, 1993.
+Resolution No.12011/9/94-BCC, dated 19-10-1994 published in the Gazette of India Extraordinary - Part I, Section I,
+No. 163, dated 20th October 1994.
+Resolution No.12011/7/95-BCC, dated the 24th May 1995 published in the Gazette of India Extraordinary - Part I,
+Section I, No. 88, dated 25"h May, 1995.
+Resolution No.12011/96/94-BCC, dated 9th March, 1996.
+Resolution No.12011/44/96-BCC, dated the 6th December, 1996, published in the Gazette of India Extraordinary - Part
+1, Section I, No. 210, dated the 11th December, 1996.
+Resolution No.12011/13/97-BCC, dated 3rd December, 1997.
+Resolution No.12011/99/94-BCC, dated 11th December, 1997.
+Resolution No.12011/68/98-BCC, dated 27th October, 1999.
+Resolution No.12011/88/98-BCC, dated the 6th December, 1999, published in the Gazette of India Extraordinary - Part
+1, Section I, No. 270, dated the 6th December, 1999.
+Resolution No.12011/36/99-BCC, dated 4* April, 2000, published in the Gazette of India Extraordinary - Part I, Section
+I, No. 71, dated 4th December, 2000.
+Resolution No.12011/44/99-BCC, dated the 21.9.2000, published in the Gazette of India Extraordinary - Part I, Section
+1, No. 210, dated the 21.9.2000.
+Shri/Smt/Kum
+_and/or his/her
+District/Division of the
+family
+state.
+ordinarily reside(s) in the
+This is to certify that he/she does not belong to the persons/sections (Creamy Layer) mentioned in Column No.3 of the
+Schedule to the Government of India, Department of Personnel and Training O.M.No.36012/22/93-Estt (SCT), dated 8.9.93 and
+modified vie Govt. of India, DOP&T O.M.No.36033/3/20024 dated 09.03.2004, 14.10.2008, 27.05.2013 & 13-09-2017.
+Dated:
+Note: 1(a)
+Note: I1
+District Magistrate Or
+Deputy Commissioner etc.,
+with seal
+The term "ordinarily' used here will have the same meaning as in Section 20 of the Representation of the
+People Act, 1950.
+The authorities competent to issue Caste Certificate are indicated below:
+District Magistrate/Additional Magistrate/Collector/Dy. Commissioner/Additional Deputy
+commissioner / Deputy Collector/1st Class Stipendiary magistrate / Sub-Divisional Magistrate /
+Taluka Magistrate / Executive Magistrate / Extra Assistant Commissioner (not below the rank of 1st
+class Stipendiary Magistrate)
+(ii)
+(iii)
+(iv)
+Chief Presidency Magistrate / Additional Chief Presidency Magistrate / Presidency Magistrate.
+Revenue Officer not below the rank of Tehsildar.
+Sub-Divisional Officer of the area where the candidate and/or his/her family resides.
+candidate and also, for assuming that the candidate does not fall in the creamy layer. The OBC candidates
+issued by the competent authority on or before the Closing date as stipulated in the Notice.
+--- Page 13 ---
+Annexure-ll (a)
+DECLARATION TO BE SIGNED BY THE OBC CANDIDATES ONLY
+I,
+son/daughter of Shri/Smt/Kum_
+resident of
+Village/town/city
+District
+state
+(Certificate enclosed) hereby declare that I belong to the —
+community which is
+recognized as a Backward class by the Govt. of India for the purpose of reservation in services as per the order contained in
+Department of Personnel and Training Office Memorandum No.36012/22/93-Estt(SCT), dated 8.9.1993. It is also declared that
+I do not belong to the Persons/Sections (Creamy Layer) mentioned in Column No.3 of the Schedule of the Government of India,
+Department of Personnel and Training O.M.No.36012/22/93-Estt.(SCT), dated 08.09.93 and its subsequent revision through
+O.M.No. 36033/3/2004-Estt(Res), dated 09.08.2004, 27-05-213 and 13-09-2017.
+Place:
+Date:
+(signature of the applicant in running handwriting)
+Note: The closing date for receipt of application will be treated as the date of reckoning for OBC status of the candidate
+and also for as summing that the candidate does not fall in the creamy layer.
+--- Page 14 ---
+Annexure-!!!
+Certificate No.
+Government of
+(Name & Address of the authority issuing the certificate)
+INCOME & ASSEST CERTIFICATE TO BE PRODUCED BY ECONOMICALLY WEAKERS SECTIONS
+Date:
+VALID FOR THE YEAR
+This is to certify that Shri/Smt/Kumari
+_ son/daughter/wife of
+permanent resident of.
+village/street_
+Post Office
+in the State/Union Territory
+_ whose photograph is attested below belongs to
+Economically Weaker Sections, since the gross annual income* of his/her 'family'** is below Rs.8 lakh (rupees: Eight Lakh only)
+for the financial year.
+•His/her family does not own or possess any of the following assets***
+i)
+i)
+iii)
+iv)
+5 acres of agricultural land and above;
+Residential flat of 1000 sq.ft and above;
+Residential plot of 100 sq. yards and above in notified municipalities;
+Residential plot 200 sq. yards and above in areas other than the notified municipalities.
+2.
+Shri/Smt/Kumari
+. belongs to the
+caste which is not recognized as a
+Scheduled Caste, Scheduled Tribes and Other Backward Classes (Central List)
+Signature with seal of office.
+Name:
+Designation:_
+Recent Passport size
+attested photograph
+of the applicant
+The income and assets of the families as mentioned would be required to be certified
+by an office not below the rank of Tehsildar in the States/UTs
+==========
+* Note-1:
+**Note-2:
+***Note-3:
+----------------------------------------------
+Income covered all sources i.e., salary, agricultural, business, profession, etc.,
+The term "family" for this purpose include the person, who seeks benefit of reservation, his/her parents are
+sibling below the age of 18 years as also his/her spouse and children below the age of 18 years
+The property held by a "Family" in different locations or different places/cities have been clubbed while
+applying the land Or property holding test to determine EWS status.
+--- Page 15 ---
+Annexure-IV
+Certificate of Disability (Form-V)
+(In cases of amputation Or complete permanent paralysis of limbs and in cases of blindness)
+{See rule 18(1)}
+(Name and Address of the Medical Authority issuing the Certificate)
+Recent Passport size
+Attested Photograph
+(showing the face
+only) of the person
+with disability
+Certificate No.
+1.
+This is to certify that I have carefully examined Shri/smt/Kum
+Date of Birth
+registration No.
+Ward/village/Street
+Post Office
+whose photograph is affixed above, and I am satisfied that;
+2.
+(A) He/she is a case of
+• Locomotor disability
+• Dwarfism
+• Blindness
+(Please tick as applicable)
+(B) The diagnosis in his/her case
+(c) He/she has
+_% (in figure)
+Disability / dwarfism / blindness in relation to his/her _
+number and date of issue of the guidelines to be specified)
+The applicant has submitted the following documents as proof of residence: -
+Name of Document
+Date of Issue
+Date:
+_son/wife/daughter of Shri
+years, male/female
+_ (DD/MM/YYYY), Age
+permanent resident
+of House No.
+_District
+_State
+_percent (in words) permanent Locomotor
+- (part of body) as per guidelines (_
+Details of authority
+issuing certificate
+(Signature and Seal of the Authorized Signatory of
+Notified Medical Authority)
+Signature/Thumb
+impression of the
+person in whose
+favour certificate
+of
+disability
+certificate issued.
+--- Page 16 ---
+Annexure-V
+Certificate of Disability (Form VI)
+(In cases of multiple disabilities)
+{See rule 18(1)}
+(Name and Address of the Medical Authority issuing the Certificate)
+Recent Passport size
+Attested Photograph
+(showing the face
+only) of the person
+with disability
+Certificate No.
+Date:
+1.
+This is to certify that we have carefully examined Shri/Smt/Kum
+son/wife/daughter of Shri
+_ Date of Birth
+(DD/MMM/YYY)
+Age
+Years, male/female
+_Registration No.
+permanent
+resident of House No.
+District.
+State
+Ward/village/Street_
+Post Office
+whose photograph is affixed above, and are satisfied that,
+(A)
+He/she is a Case of Multiple Disability, His/her extent of permanent physical impairment/disability has been
+evaluated as per guidelines (_
+_ number and date of issue of the guidelines to be specified for the disabilities
+ticked below, and shown against the relevant disability in the table below:
+S.
+No.
+4
+5
+8
+9
+10
+11
+12
+17
+20
+21
+Disability
+Locomotor disability
+Muscular Dystrophy
+Leprosy Cured
+Dwarfism
+Cerebral Palsy
+Acid attack Victim
+Low vision
+Blindness
+Deaf
+Hard of hearing
+Speech and Language disability
+Intellectual Disability
+ecific Learning Disabili
+tism Spectrum Disord
+Mental illness
+Chronic Neurological conditions
+Multiple sclerosis
+Perkinson's disease
+Hemophilia
+Thalassemia
+Sickle Cell disease
+Affected part of body
+Diagnosis
+Permanent physical
+impairment/ mental
+disability (in%)
+@
+#
+#
+Cond...2/-
+--- Page 17 ---
+2.
+::2::
+(B)
+in the light of the above, his/her over all permanent physical impairment as per guidelines (
+number and date of issue of the guidelines to be specified), is as follows:
+In figures:
+percent
+In words:
+percent
+The condition is progressive / non-progressive/ likely to improve / not like to improve.
+Reassessment of disability is:
+(i)
+(ii)
+not necessary
+Or
+is recommended / after _
+_years
+(DD/MM/YYYY)
+months, and therefore this certificate shall be valid
+@e.g. Left/right/both arms/legs
+# e.g. Single eye
+€ Left/Right/both ears
+The applicant has submitted the following document as proof of residence: -
+Name of Document
+Date of Issue
+Details of authority issuing
+certificate
+Signature and seal of the Medical Authority
+(Signature)
+Name and seal of Member
+(signature)
+Name and seal of Member
+(signature)
+Name and seal of the Chairperson
+Signature/Thumb
+impression of the
+berson in whose
+favour certificate
+of
+disability
+certificate issued.
+--- Page 18 ---
+Annexure-VI
+Certificate of Disability
+(In cases of other than mentioned in Forms V and IV)
+(Name and Address of the Medical Authority issuing the Certificate)
+{See rule 18 (1)}
+Recent Passport size
+Attested Photograph
+(showing the face
+only) of the person
+with disability
+Certificate No.
+Date:
+This is to certify that we have carefully examined Shri/Smt/Kum
+son/wife/daughter of Shri
+Years, male/female
+_ Date of Birth
+_ (DD/MMM/YYY)
+Registration No.
+resident of House No.
+Ward/village/Street_
+Post Office
+District
+_State
+whose photograph is affixed above, and are satisfied that,
+permanent
+S.
+No.
+1
+2
+3
+4
+8
+7
+8
+12
+13
+14
+15
+16
+17
+18
+19
+He/she is a Case of Multiple Disability, His/her extent of permanent physical impairment/disability has bee
+evaluated as per guidelines (_
+number and date of issue of the guidelines to be specified for the disabilitie
+ticked below, and shown against the relevant disability in the table below:
+Disability
+Affected part of body Diagnosis
+Permanent physical
+impairment/ mental
+disability (in%)
+Locomotor Disability
+Muscular Dystrophy
+Leprosy Cured
+Cerebral Palsy
+Acid attack Victim
+Low vision
+Deaf
+Hard of hearing
+Dwarfism
+Blindness
+Speech and Language disability
+Intellectual Disability
+Specific Learning Disability
+Autism Spectrum Disorder
+Mental illness
+Chronic Neurological conditions
+Multiple sclerosis
+Perkinson's disease
+Hemophilia
+Thalassemia
+Sickle Cell disease
+@
+#
+#
+(Please stick out the disabilities which are not applicable)
+Cond...2/-
+--- Page 19 ---
+:: 2::
+2.
+3.
+The condition is progressive / non-progressive/ likely to improve / not like to improve.
+Reassessment of disability is:
+(i)
+(ii)
+not necessary
+Or
+is recommended / after.
+_years_
+till_
+(DD/MM/YYYY)
+@e.g. Left/right/both arms/legs
+#e.g. Single eye
+€ Left/Right/both ears
+The applicant has submitted the following document as proof of residence: -
+Name of Document
+Date of Issue
+months, and therefore this certificate shall be valid
+Details of authority issuing
+certificate
+(Authorized Signatory of notified Medical Authority)
+(Name and Seal)
+(Counter signature and seal of the Chief Medical Officer /
+Head of Government Hospital, in case the
+Certificate is issued by a medical authority who is not
+a Government Servant (with seal)
+Signature/Thumb
+impression of the
+person in whose
+favour certificate
+of
+disability
+certificate issued.
+In case this certificate is issued by a medical authority who is not a Government servant, it shall be valid only if
+countersigned by the Chief Medical Officer of the District
+--- Page 20 ---
+Annexure -VII
+NO OBJECTION CERTIFICATE
+(To be produced on the Letter Head of the Department and to be filled by the Head of the Department in
+which the candidate is working)
+This
+is
+to
+certify
+that Mr./Mrs./Miss/Dr.
+(name and designation) is working on regular post at
+since
+_ The particulars furnished by him/off in the application form are cordress)
+he/she possesses educational qualification and experience mentioned in the Vacancy Circular no.
+_dated
+organization
+no objection
+in his/her applying
+the post of
+as mentioned in the above stated circular. There is no vigilance
+case pending against him/her. His/her integrity is beyond doubt and there is no major/minor penalties
+imposed on him since
+Signature:
+Name:
+Designation:
+Seal of the office:
+Place:
+Date:
+--- Page 21 ---
+ANNEXURE VIII
+The form of certificate to be produced by Government Servants for claiming Age concession
+(Letter Head of the Institution/Issuing Authority)
+This is to certify that Shri/Ms.
+_ s/o, d/o, w/o Shri.
+appointed employee of this organisation/Department/Ministry and duties performed by him/her during the period(s) are as under:
+is a regularly
+Certified that:
+*(a) Shri/Shrimati/Kum.
+Office/Department of
+- holds substantively a permanent post of
+with effect from
+in the
+*(b) Shri/Shrimati/Kum.
+Government in the post of
+has been continuously in temporary service on a regular basis under the Central
+_ in the Office/Department of
+with effect from
+Signature
+Name:
+Designation:
+Ministry/Office:
+Address:_
+Office Seal_
+Place:
+Date:
+Note: Candidates working with Central Govt./State Govt./PSU/Autonomous bodies have to furnish 'NOC' from the authority concerned.
+The 'NOC' should also confirm that no disciplinary/Vigilance case is either pending or contemplated. Withdrawal of candidature on
+account of non-furnishing of any information will not confer any right to carry forward or retain the candidature for future recruitment. Also
+attested copy of APAR and AWR for the last 5 years in respect of the individual is required on demand.
+--- Page 22 ---
+ANNEXURE IX
+CERTIFICATE TO BE PRODUCED BY SERVING/RETIRED/RELEASED ARMED FORCES PERSONNEL FOR AVAILING THE AGE CONCESSION FOR POSTS
+2.
+FILLED BY DIRECT RECRUITMENT
+Form of Certificate applicable for Released/Retired Personnel
+It is entired that No.
+Rank
+in Army/Navy/Air Force.
+Name
+whose date of birth is.
+has rendered service from
+He has been rel completion of asgent .
+On completion of assignment otherwise than
+(i)
+(ii)
+by way of dismissal, or
+by way of discharge on account of misconduct or inefficiency, or
+on his own request, but without earning his pension, or
+he has not been transferred to the reserve pending such release.
+%(b)
+%(c)
+on account of physical disability attributable to Military service.
+on invalidment after putting in at least five years of Military service
+He is covered under the definition of Ex-Serviceman (Re-employment in Central Civil Services and Posts) Rules, 1979 as amended from time to time.
+Signature, Naal and Designation of the Competent Authoriy
+Place:
+Date:
+% Delete the paragraph which is not applicable.
+Form of Certificate for Serving Personnel
+(Applicable for serving personnel who are due to be released within one year)
+It is certified that No.
+in Army/Navy/Air Force.
+Rank
+Name
+He is due for release retirement on completion of his specific period of assignment on
+No disciplinary/vigilance case is pending against him.
+whose date of birth is
+is serving from
+Place:
+Date :
+Signature, Name and Designation of the Competent Authority
+Seal
+I understand that if selected on the basis of recruitment process to which this application relates, my appointment will be subject to my producing documentary evidence to
+the satisfaction of the appointing authority that I have been duly released/retired/discharged from the Armed Forces and that I am entitled to the benefits admissible to Ex-
+Servicemen in terms of the Ex-servicemen (Re-employment in Central Civil Service and Posts) Rules, 1979, as amended from time to time.
+Place:
+Date:
+Signature and Name of Candidate.
+Form of Certificate applicable for Serving ECOs/SSCOs who have already completed their initial assignment and are on extended assignment
+It is certified that No.
+in Army/Navy/Air Force.
+Rank
+Name
+whose date of birth is
+_is serving from
+He has already completed his initial assignment of five years on
+and is on extended assignment till
+There is no objection to his applying for civil employment and he will be released on three months notice on selection from the date of receipt of appointment.
+Place:
+Date :
+Signature, Name and Designation of the Competent Authority
+Seal
+* Authorities who are competent to issue certificate to Armed Forces Personnel for availing Age concessions are as follows:
+(a) In case of Commissioned Officers including ECOs/SSCOs.
+Army - Military Secretary Branch, Army HQ, New Delhi.
+Navy - Directorate of Personnel, Naval HQ, New Delhi.
+Air Force - Directorate Personnel Officers, Air HQ, New Delhi
+(b) In case of JCOs/ORs and equivalent of the Navy and Air Force.
+Army - by various Regimental Record Offices
+Navy - BABS, Mumbai
+Air Force - Air Force Records, New Delhi
+#
+#
